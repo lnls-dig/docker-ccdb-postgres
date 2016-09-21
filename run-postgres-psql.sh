@@ -4,15 +4,10 @@ set -a
 set -e
 set -u
 
-NET_NAME="$1"
-DNS_IP="$2"
-POSTGRES_PORT="$3"
-POSTGRES_USER="$4"
-POSTGRES_PASSWORD="$5"
-CCDB_DOCKER_IMAGE_NAME="$6"
+. ./env-vars.sh
 
 # Run postgres
-docker run --name ${CCDB_DOCKER_IMAGE_NAME}-psql --net ${NET_NAME} --dns ${DNS_IP} \
+docker run --name ${CCDB_DOCKER_RUN_NAME_PSQL} --net ${NET_NAME} --dns ${DNS_IP} \
     -e POSTGRES_USER=${POSTGRES_USER} \
     -e POSTGRES_PASSWORD=${POSTGRES_PASSWORD} \
-    -it postgres psql -h docker-${CCDB_DOCKER_IMAGE_NAME} -U ${POSTGRES_USER}
+    -it postgres psql -h ${CCDB_DOCKER_IMAGE_NAME} -U ${POSTGRES_USER}

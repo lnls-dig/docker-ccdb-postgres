@@ -4,20 +4,10 @@ set -a
 set -e
 set -u
 
-NET_NAME="$1"
-DNS_IP="$2"
-POSTGRES_PORT="$3"
-POSTGRES_USER="$4"
-POSTGRES_PASSWORD="$5"
-CCDB_DOCKER_IMAGE_NAME="$6"
-CCDB_DOCKER_VOLUME="$7"
-CCDB_DOCKER_IMAGE_NAME="$8"
-LOCAL_POSTGRES_PORT="$9"
-
-echo POSTGRES_USER=$POSTGRES_USER
+. ./env-vars.sh
 
 # Run postgres_user
-docker run  --name ${CCDB_DOCKER_IMAGE_NAME} --net ${NET_NAME} --dns ${DNS_IP} \
+docker run  --name ${CCDB_DOCKER_RUN_NAME} --net ${NET_NAME} --dns ${DNS_IP} \
     -p ${LOCAL_POSTGRES_PORT}:${POSTGRES_PORT} -e POSTGRES_USER=${POSTGRES_USER} \
     -e POSTGRES_PASSWORD=${POSTGRES_PASSWORD} \
-    -d --volumes-from ${CCDB_DOCKER_VOLUME} lerwys/docker-${CCDB_DOCKER_IMAGE_NAME}
+    -d --volumes-from ${CCDB_DOCKER_VOLUME} ${CCDB_DOCKER_ORG_NAME}/${CCDB_DOCKER_IMAGE_NAME}
