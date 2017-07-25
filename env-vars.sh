@@ -13,4 +13,4 @@ CCDB_DOCKER_RUN_NAME=ccdb-postgres
 CCDB_DOCKER_RUN_NAME_PSQL=${CCDB_DOCKER_RUN_NAME}-psql
 CCDB_DOCKER_IMAGE_NAME=docker-${CCDB_DOCKER_RUN_NAME}
 
-CCDB_DOCKER_VOLUME=ccdb-postgres-volume
+CCDB_DOCKER_VOLUME=dockerccdbcomposed_ccdb-postgres-volume
