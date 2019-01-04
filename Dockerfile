@@ -4,7 +4,7 @@ FROM postgres:9.5.4
 
 MAINTAINER Lucas Russo
 
-ENV SCRIPTS_VERSION 1.5.0-1
+ENV SCRIPTS_VERSION 1.5.15
 
 # Add initial databases
 COPY scripts/init-user-db.sh /docker-entrypoint-initdb.d
